@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		函数节流
+	</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	function throtitle(fn,delay,duration){
+		var start=new Date().getTime();
+		var timer;
+		return function(){
+			clearInterval(timer);
+			var context=this,arg=Array.prototype.slice.call(arguments);
+			var current=new Date().getTime();
+			//第一次与
+			if(current-start>=duration){
+				fn.apply(context,arg);
+				start=current;
+			}else{
+				console.log("ddd");
+				timer=setTimeout(function(){
+					fn.apply(context,arg);
+				},delay);
+			}
+
+		}
+	}
+
+	$(document).ready(function(){
+
+		$(window).resize(throtitle(doResize,500,2000));
+
+	});
+
+	function doResize(){
+		console.log("dd");
+	}
+
+</script>
+</body>
+</html>

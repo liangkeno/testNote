@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id='div'>div</div>
+<ul>
+	<li>list1</li>
+	<li>list2</li>
+</ul>
+<script type="text/javascript">
+	function getElements(name){
+		if(!getElements.cache){
+			getElements.cache={};
+		}
+
+		return getElements.cache[name]= getElements.cache[name] || document.getElementsByTagName(name);
+	}
+	console.log(getElements('li'));
+
+	var index={
+		length:0,
+		add:function(elem){
+			Array.prototype.push.call(this,elem);
+		},
+		getter:function(id){
+			this.add(document.getElementById(id));
+		}
+	};
+
+	index.getter('div');
+	console.log(index.length);
+	console.log(index[0]);
+</script>
+</body>
+</html>

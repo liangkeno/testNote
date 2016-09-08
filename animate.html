@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动画</title>
+</head>
+<body>
+<style type="text/css">
+	.container{width: 1000px;height: 700px;background-color: #000; position: relative;}
+	.box{width: 50px;height: 50px;background-color: #fff; position: absolute;}
+
+</style>
+<div class="container">
+	<div class="box" style="left:0;"></div>
+</div>
+<script type="text/javascript">
+	(function(){
+		var box=document.querySelector('.box');
+		var goPesition=600;
+		var animateModule=(function(){
+			var timer;
+			return {
+				getStyleAtrr:function(dom,attr){
+					if(dom.currentStyle){
+						return dom.currentStyle[attr];
+					}else{
+						return getComputedStyle(dom,false)[attr];
+					}					
+				},
+				scrollX:function(){
+					var curLeft=parseInt(this.getStyleAtrr(box,'left'));
+					var speed=(goPesition-curLeft)/6;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					box.style.left=curLeft+speed+"px";
+					console.log(goPesition+":"+curLeft+":"+speed);
+					//box.style.top=curLeft+speed+"px";
+					if(goPesition==curLeft){
+						clearInterval(timer);
+					}					
+				},
+				doMove:function(){
+					if(timer){
+						clearInterval(timer);
+					};
+					var that=this;
+					timer=setInterval(function(){
+						that.scrollX();
+					},100);					
+				}
+			}
+		})();
+		animateModule.doMove();
+
+	})();
+</script>
+</body>
+</html>

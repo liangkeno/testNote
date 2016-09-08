@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>animateIt</title>
+</head>
+<body>
+<style type="text/css">
+	.container{width: 800px;height: 800px;position: relative;background-color: #000; margin:15px auto;}
+	#box{width: 50px;height: 50px; background-color: #fff;position: absolute;}
+	#box2{width: 50px;height: 50px; background-color: #fff;position: absolute; }
+</style>
+<div class="container">
+	<div id="box">
+		
+	</div>
+	<div id="box2" style="left: 750px; top:750px;">
+		
+	</div>
+</div>
+<script type="text/javascript">
+	var box=document.getElementById("box");
+	var box2=document.getElementById("box2");
+	function animateIt(elem,direction){
+		var tick=0;
+		var timer=setInterval(function(){
+			if(tick<100){
+				var number=parseInt(elem.style.left)||0;
+				elem.style.left=elem.style.top=(number=number+(direction?-1:1))+"px";
+				tick++;
+			}else{
+				clearInterval(timer);
+			}
+		},10);
+	}
+	animateIt(box);
+
+	animateIt(box2,true)
+</script>
+</body>
+</html>

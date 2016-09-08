@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		函数的结构
+	</title>
+</head>
+<body>
+<script type="text/javascript">
+	console.dir(Function.__proto__);
+	console.dir(Function.__proto__.__proto__)//object
+	console.dir(Function.__proto__.__proto__.__proto__);//null
+	//用于构造函数的构造函数的静态方法
+	Function.FunctionStaticMethod=function(){
+		console.log("I am static");
+	};
+	//用于构造函数的构造函数的原型
+	Function.prototype.FunctionPrototypeMethod=function(){
+		console.log("Function Prototype Method");
+	}
+
+	function fn(){
+		var variable="i am variable"
+		this.selfName=" is fn attribute";
+		this.selfSay=function(){
+			console.log(this.selfName);
+			console.log(variable);
+		}
+	}
+
+	//静态属性
+	fn.staticName="I am static";
+	fn.staticMethod=function(){
+		console.log(this.staticName);
+	}
+
+	//函数原型
+	fn.prototype.fnPrototypeName="I am prototype";
+	fn.prototype.fnPrototypeFn=function(){
+		console.log(this.selfName);
+	}
+
+var fnObj=new fn();
+//new fn自身方法
+fnObj.selfSay();
+//new fn原型方法
+fnObj.fnPrototypeFn();
+//fn的静态方法
+fn.staticMethod();
+
+
+console.dir(fn);
+
+console.dir(fnObj);
+
+
+for(var attr in fnObj ){
+	console.log(attr);
+}
+
+for(var fnAttr in fn){
+	console.log(fnAttr);
+}
+
+</script>
+</body>
+</html>

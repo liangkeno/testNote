@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>鼠标事件 enter leave over out</title>
+</head>
+<body>
+<style type="text/css">
+	#inerId{background-color: #ccc;}
+	#inerId2{background-color: #000;}
+</style>
+<div id="wrapId">
+	<div id="inerId">
+		<h1 style="width:500px;">hello world!</h1>
+	</div>
+	<div id="inerId2">
+		<p> hello world!</p>
+	</div>
+</div>
+
+<div id="wrapId_click">
+	<div id="inerId_click">
+		<button>click me</button>
+	</div>
+</div>
+<script type="text/javascript">
+	var wrapId=document.getElementById("wrapId");
+	var inerId=document.getElementById("inerId");
+	wrapId.addEventListener("mouseenter",function(e){
+		console.log("mouseenter wrapId");
+	},false);
+	inerId.addEventListener("mouseover",function(e){
+		console.log("mouseover inerId");
+	},false);	
+
+
+	var wrapId_click=document.getElementById("wrapId_click");
+	var inerId_click=document.getElementById("inerId_click");
+	wrapId_click.addEventListener("click",function(e){
+		console.log("wrapId_click");
+	},false);
+	inerId_click.addEventListener("click",function(e){
+		console.log("inerId_click");
+	},false);	
+
+
+</script>
+
+</body>
+</html>
